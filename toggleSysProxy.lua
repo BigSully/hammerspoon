@@ -1,5 +1,17 @@
--- toggle system proxy  toggle Proxy is a function defined in .profile file
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "P", function()
+-- toggle system proxy
+function toggle()  
   local output = hs.execute("/opt/bin/toggleSysProxy", false)
   hs.alert.show(output)
-end)
+end
+
+local mymodule = {}
+
+-- bind to hotkeys to restart
+-- obj.on({{"cmd", "alt", "ctrl"}, "P"})
+function mymodule.on(keyspec)
+  hs.hotkey.bindSpec(keyspec, function()
+    toggle()
+  end)
+end
+
+return mymodule
