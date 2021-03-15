@@ -4,7 +4,7 @@ amphetamine = require "amphetamine"
 toggleProxy = require "toggleSysProxy"
 
 openconnect = require "openconnect"
-
+openconnect.init()
 
 -- reload config
 hs.hotkey.bind({"cmd", "alt", "ctrl"}, "R", function()

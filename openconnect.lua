@@ -1,3 +1,6 @@
+local mymodule = {}
+
+-- wather:start() to enable the listenging
 function printf(s,...)  print(s:format(...)) end
 wather = hs.caffeinate.watcher.new(function(eventType)    
     -- screensDidWake, systemDidWake, screensDidUnlock
@@ -10,6 +13,7 @@ wather = hs.caffeinate.watcher.new(function(eventType)
         hs.notify.new({title="Openconnect", informativeText="openconnect restarted"}):send()
     end
 end)
-wather:start()
 
+function mymodule.init()  wather:start() end
 
+return mymodule
