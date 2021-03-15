@@ -23,7 +23,7 @@ end)
 
 
 -- bind to hotkeys to restart
--- obj.on({{"cmd", "alt", "ctrl"}, "O"})
+-- obj.on({{"cmd", "alt", "ctrl"}, "V"})
 function mymodule.on(keyspec)
   hs.hotkey.bindSpec(keyspec, function()
     restart()
