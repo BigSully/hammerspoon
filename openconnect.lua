@@ -1,5 +1,7 @@
 local mymodule = {}
 
+function printf(s,...)  print(s:format(...)) end
+
 -- restart openconnect with a shell script
 function restart()  
   -- Add the following line to /etc/sudoers to reduce password prompt of sudo /opt/bin/openconnect.sh
@@ -11,25 +13,22 @@ function restart()
   return output
 end
 
--- listen and system wake from sleep, and reconstruct the openconnect
--- wather:start() to enable the listenging
-function printf(s,...)  print(s:format(...)) end
-wather = hs.caffeinate.watcher.new(function(eventType)    
-    -- screensDidWake, systemDidWake, screensDidUnlock
-    if eventType == hs.caffeinate.watcher.systemDidWake then
-        restart()
-    end
-end)
-
-
--- bind to hotkeys to restart
--- obj.on({{"cmd", "alt", "ctrl"}, "V"})
-function mymodule.on(keyspec)
+-- mod.listenOnHotkey({{"cmd", "alt", "ctrl"}, "V"})
+function mymodule.listenOnHotkey(keyspec)
   hs.hotkey.bindSpec(keyspec, function()
     restart()
   end)
 end
 
-function mymodule.init()  wather:start() end
+-- mod.listenOnEvent()
+function mymodule.listenOnEvent()
+  wather = hs.caffeinate.watcher.new(function(eventType)    
+    -- screensDidWake, systemDidWake, screensDidUnlock
+    if eventType == hs.caffeinate.watcher.systemDidWake then
+        restart()
+    end
+  end)
+  wather:start() 
+end
 
 return mymodule
