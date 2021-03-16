@@ -8,7 +8,7 @@ toggleProxy.on({{"cmd", "alt", "ctrl"}, "P"})
 
 
 openconnect = require "openconnect"
-openconnect.listenOnEvent()
+openconnect.listenOnWakeEvent()
 openconnect.listenOnHotkey({{"cmd", "alt", "ctrl"}, "V"})
 
 -- reload config

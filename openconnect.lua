@@ -21,7 +21,7 @@ function mymodule.listenOnHotkey(keyspec)
 end
 
 -- mod.listenOnEvent()
-function mymodule.listenOnEvent()
+function mymodule.listenOnWakeEvent()
   wather = hs.caffeinate.watcher.new(function(eventType)    
     -- screensDidWake, systemDidWake, screensDidUnlock
     if eventType == hs.caffeinate.watcher.systemDidWake then
